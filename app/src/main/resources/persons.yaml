@@ -1,0 +1,159 @@
+---
+- name: "Vasya"
+  age: 15
+  weight: 15.3
+  gender: "MALE"
+  phones:
+  - number: "+375291255517"
+    operator: "A1"
+  - number: "+375335658801"
+    operator: "MTS"
+- name: "Petr"
+  age: 25
+  weight: 80.3
+  gender: "MALE"
+  phones:
+  - number: "+375293558510"
+    operator: "LIFE"
+- name: "Vika"
+  age: 18
+  weight: 48.3
+  gender: "FEMALE"
+  phones:
+  - number: "+375335480112"
+    operator: "MTS"
+  - number: "+375297256601"
+    operator: "LIFE"
+- name: "Kirill"
+  age: 21
+  weight: 77.3
+  gender: "MALE"
+  phones:
+  - number: "+375293561211"
+    operator: "LIFE"
+- name: "Anton"
+  age: 36
+  weight: 99.3
+  gender: "MALE"
+  phones:
+  - number: "+375335852012"
+    operator: "MTS"
+  - number: "+375445601299"
+    operator: "A1"
+  - number: "+375293452500"
+    operator: "A1"
+- name: "Lida"
+  age: 13
+  weight: 35.3
+  gender: "FEMALE"
+  phones:
+  - number: "+375291456901"
+    operator: "A1"
+- name: "Vladimir"
+  age: 67
+  weight: 84.0
+  gender: "MALE"
+  phones:
+    - number: "+375333333333"
+      operator: "MTS"
+- name: "Janna"
+  age: 33
+  weight: 65.3
+  gender: "FEMALE"
+  phones:
+    - number: "+375445069844"
+      operator: "A1"
+    - number: "+375297890215"
+      operator: "LIFE"
+- name: "Maksim"
+  age: 27
+  weight: 88.3
+  gender: "MALE"
+  phones:
+    - number: "+375291885874"
+      operator: "LIFE"
+    - number: "+375291234488"
+      operator: "A1"
+- name: "Antonina"
+  age: 30
+  weight: 55.3
+  gender: "FEMALE"
+  phones:
+    - number: "+375336520145"
+      operator: "MTS"
+- name: "Jessica"
+  age: 25
+  weight: 53.6
+  gender: "FEMALE"
+  phones:
+    - number: "+375445562014"
+      operator: "A1"
+    - number: "+375336504120"
+      operator: "MTS"
+- name: "Egor"
+  age: 20
+  weight: 66.3
+  gender: "MALE"
+  phones:
+    - number: "+375297258801"
+      operator: "LIFE"
+- name: "Vadim"
+  age: 23
+  weight: 77.3
+  gender: "MALE"
+  phones:
+    - number: "+375336521410"
+      operator: "MTS"
+- name: "Lyda"
+  age: 28
+  weight: 77.3
+  gender: "FEMALE"
+  phones:
+    - number: "+375335669900"
+      operator: "MTS"
+    - number: "+375445502580"
+      operator: "A1"
+- name: "Fedor"
+  age: 38
+  weight: 88.3
+  gender: "MALE"
+  phones:
+    - number: "+375257255553"
+      operator: "LIFE"
+- name: "Eallon"
+  age: 32
+  weight: 69.3
+  gender: "MALE"
+  phones:
+    - number: "+375291111111"
+      operator: "A1"
+- name: "Anton"
+  age: 22
+  weight: 67.3
+  gender: "MALE"
+  phones:
+    - number: "+375291456021"
+      operator: "A1"
+- name: "Anna"
+  age: 17
+  weight: 48.3
+  gender: "FEMALE"
+  phones:
+    - number: "+375445204590"
+      operator: "A1"
+- name: "Kirill"
+  age: 24
+  weight: 63.3
+  gender: "MALE"
+  phones:
+    - number: "+375445609898"
+      operator: "A1"
+- name: "Anton"
+  age: 33
+  weight: 73.3
+  gender: "MALE"
+  phones:
+    - number: "+375291285503"
+      operator: "A1"
+    - number: "+375446402530"
+      operator: "A1"
