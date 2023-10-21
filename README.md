@@ -1,4 +1,5 @@
 ## Stream API
+- Выполненые задачи находятся в [App.java](app/src/main/java/homeworkstream/App.java)
 ## Условие:
 *Объекты:*
 - Person(String name, int age, double weight, Gender gender, List<Phone> phones)
