@@ -3,6 +3,7 @@
  */
 package homeworkstream;
 
+import homeworkstream.collector.MyCollector;
 import homeworkstream.enums.Gender;
 import homeworkstream.model.Person;
 import homeworkstream.model.Phone;
@@ -176,23 +177,24 @@ public class App {
             System.out.println("-------------------------");
         }
 
-        //task 14
+        //task 14 Для поиска первой и последней даты используется собственная реализация Collector'a - MyCollector
         {
             //Количество сгенерированных дат
             int countDates = 11;
             System.out.printf("14. Получите список дат(%s) и найдите количество дней между первой и последней датой.\n",countDates);
+            System.out.println("Для выполнения данной задачи используется собственный коллектор - MyCollector");
             List<Date> dates = StreamUtil.getDates(countDates);
             System.out.println("List of dates: "+dates);
 
-            long s = Stream.of(dates.stream().findFirst().orElseGet(Date::new),dates.stream().reduce((d1, d2)->d2).orElseGet(Date::new))
+            dates.stream()
+                    .collect(new MyCollector<>())
+                    .stream()
                     .peek(System.out::println)
                     .map(Date::getTime)
                     .reduce((e1,e2)-> Math.abs(ChronoUnit.DAYS.between(new Date(e2).toInstant(),new Date(e1).toInstant())))
-                    .orElseGet(()->0L);
-            System.out.println(s+" days differences");
+                    .ifPresent((x)-> System.out.println(x+" days differences"));
 
             System.out.println("-------------------------");
-
         }
 
         //task 15
@@ -237,7 +239,8 @@ public class App {
             try{
                 long sum = custForkJoinPool.submit(()-> new Random().longs(1000000)
                         .parallel()
-                        .reduce(0L,Long::sum)).get();
+                        .reduce(0L,Long::sum))
+                        .get();
                 System.out.println("sum: "+sum);
             }finally {
                 custForkJoinPool.shutdown();
