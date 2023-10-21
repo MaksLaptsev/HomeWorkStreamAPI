@@ -247,5 +247,19 @@ public class App {
             }
             System.out.println("-------------------------");
         }
+
+        //task 17
+        {
+            System.out.println("*17. Выведите имя и количество букв в имени самого тяжеловго человека из группы людей," +
+                    " у которых номер телефона содержит число '12' ");
+            StreamUtil.getPersons().stream()
+                    .filter(person -> person.getPhones().stream()
+                            .anyMatch(phone -> phone.getNumber().contains("12")))
+                    .sorted((p1,p2)-> (int) (p2.getWeight()*100-p1.getWeight()*100))
+                    .findFirst()
+                    .ifPresent(p-> System.out.println(p.getName() +": "+ p.getName().length()));
+
+        }
+
     }
 }
