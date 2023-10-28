@@ -17,6 +17,8 @@ import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
 import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -51,7 +53,8 @@ public class App {
             StreamUtil.getPersons().stream()
                     .map(Person::getPhones)
                     .filter(phones -> phones.size()>1)
-                    .map(x-> x.stream().map(Phone::getNumber).collect(Collectors.joining()))
+                    .flatMap(Collection::stream)
+                    .map(Phone::getNumber)
                     .forEach(System.out::println);
             System.out.println("-------------------------");
         }
@@ -104,7 +107,9 @@ public class App {
                     .skip(order-1)
                     .limit(1)
                     .map(Person::getPhones)
-                    .map(lp->lp.stream().map(Phone::getOperator).collect(Collectors.toSet()))
+                    .flatMap(Collection::stream)
+                    .map(Phone::getOperator)
+                    .collect(Collectors.toSet())
                     .forEach(System.out::println);
             System.out.println("-------------------------");
         }
@@ -123,9 +128,9 @@ public class App {
         {
             System.out.println("10. Получние список Person и найдите самого младшего по возрасту.\n");
             StreamUtil.getPersons().stream()
-                    .sorted(Comparator.comparing(Person::getAge))
-                    .limit(1)
-                    .forEach(System.out::println);
+                    .min(Comparator.comparing(Person::getAge))
+                    .ifPresent(System.out::println);
+
             System.out.println("-------------------------");
         }
 
@@ -159,14 +164,7 @@ public class App {
                     Objects.requireNonNull(App.class.getClassLoader().getResource("homework-stream-api.txt")).toURI()))
             ){
                 stream
-                        .map(x-> Arrays.stream(x
-                                        .replace(",", "")
-                                        .replace(".", "")
-                                        .replace(",", "")
-                                        .replace("(","")
-                                        .replace(")","")
-                                        .replace("*","")
-                                        .replace(":","")
+                        .map(x-> Arrays.stream(x.replaceAll("[^A-Za-zА-ЯЁа-яё0-9]+", " ")
                                         .split(" "))
                                 .collect(Collectors.toList()))
                         .flatMap(Collection::stream)
@@ -203,6 +201,7 @@ public class App {
             try(Stream<String> stringStream = Files.lines(Path.of(
                     Objects.requireNonNull(App.class.getClassLoader().getResource("strings.txt")).toURI())
             )){
+                Pattern numberPat = Pattern.compile("\\d+");
                 double average = stringStream
                         .map(x-> Arrays.stream(x
                                         .replace(",", ".")
@@ -214,14 +213,7 @@ public class App {
                                         .split(" "))
                                 .collect(Collectors.toList()))
                         .flatMap(Collection::stream)
-                        .filter(x->{
-                            try{
-                                Double.parseDouble(x);
-                                return true;
-                            }catch (NumberFormatException e){
-                                return false;
-                            }
-                        })
+                        .filter(x -> numberPat.matcher(x).matches())
                         .peek(System.out::println)
                         .mapToDouble(Double::parseDouble)
                         .average()
@@ -255,7 +247,7 @@ public class App {
             StreamUtil.getPersons().stream()
                     .filter(person -> person.getPhones().stream()
                             .anyMatch(phone -> phone.getNumber().contains("12")))
-                    .sorted((p1,p2)-> (int) (p2.getWeight()*100-p1.getWeight()*100))
+                    .sorted(Comparator.comparingDouble(Person::getWeight).reversed())
                     .findFirst()
                     .ifPresent(p-> System.out.println(p.getName() +": "+ p.getName().length()));
 
